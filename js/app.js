@@ -18,10 +18,11 @@ const showProducts = (products) => {
       <div>
     <img class="product-image" src=${product.image}></img>
       </div>
-      <p>${product.title.substr(0,100)}</p>
+      <p>${product.title.substr(0,50)}</p>
       <p>Category: ${product.category}</p>
-      <h3>Price: $ ${product.price}</h3>
-      <h3><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>${product.rating.rate}</h3>
+      <h5>Price: $ ${product.price}</h5>
+      <p class='text-muted'><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> ${product.rating.rate}</p>
+      <h6>Review: ${product.rating.count}</h6>
       <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-success">add to cart</button>
       <button id="details-btn" class="btn btn-danger" onclick="detail(${product.id})">Details</button></div>
       `;
@@ -41,18 +42,26 @@ const detail = async id => {
   let url = `https://fakestoreapi.com/products/${id}`;
   const res = await fetch(url);
   const data = await res.json();
-  console.log(data)
+  console.log(data.price)
+  const container = document.getElementById('detail-container');
+  container.textContent = '';
   const div = document.createElement('div');
   div.classList.add('card');
   div.innerHTML = `
-    <img src="" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-        content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
+   <div class='row'>
+   <div class='col-5'>
+   <img src="${data.image}" height="200px" class="card-img-top" alt="...">
+  </div>
+  <div class="col-7">
+    <h5 class="card-title">${data.category}</h5>
+    <p class="card-text">${data.description}</p>
+    <p class='text-muted'><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> ${data.rating.rate}</p>
+    <h4>Price: $ ${data.price}</h4>
+    <button class="btn btn-primary text-center">Buy Now</button>
+  </div>
+   </div>
   `;
+  container.appendChild(div)
 }
 
 const getInputValue = (id) => {
