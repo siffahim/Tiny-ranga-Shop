@@ -38,21 +38,26 @@ body {
 .card:hover {
   box-shadow: 4px 4px 7px gray;
   border-radius: 10px;
-  border: 1px solid #0d6efd;
+  border: 2px solid;
+  border-image: linear-gradient(cyan,blue);
+  border-image-slice: 1;
 }
 .product-image {
   width: 150px;
   height: 150px;
 }
 .cart {
-  width: 350px;
-
-  padding: 10px;
-  box-shadow: 10px 10px 20px gray;
-  border-radius: 5px;
-  margin-right: 30px;
-  bottom: 0px;
+  width: 310px;
   position: fixed;
+  right: 0;
+  top:150px;
+  box-shadow: 0 0 10px gray;
+  background-color: #fff;
+  padding: 5px 0 5px 5px;
+  border-radius: 10px 0 0 10px;
+  border-left:5px solid;
+  border-image: linear-gradient(cyan,blue);
+  border-image-slice: 1;
 }
 .cart-main {
   padding-right: 30px;

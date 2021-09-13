@@ -23,8 +23,8 @@ const showProducts = (products) => {
       <h5>Price: $ ${product.price}</h5>
       <p class='text-muted'><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> ${product.rating.rate}</p>
       <h6>Review: ${product.rating.count}</h6>
-      <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-success">add to cart</button>
-      <button id="details-btn" class="btn btn-danger" onclick="detail(${product.id})">Details</button></div>
+      <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-primary">add to cart</button>
+      <button id="details-btn" class="btn btn-success" onclick="detail(${product.id})">Details</button></div>
       `;
     document.getElementById("all-products").appendChild(div);
   }
@@ -76,12 +76,12 @@ const updatePrice = (id, value) => {
   const convertedOldPrice = getInputValue(id);
   const convertPrice = parseFloat(value);
   const total = convertedOldPrice + convertPrice;
-  document.getElementById(id).innerText = parseFloat(total.toFixed(2));
+  document.getElementById(id).innerText = parseFloat(total).toFixed(2);
 };
 
 // set innerText function
 const setInnerText = (id, value) => {
-  document.getElementById(id).innerText = Math.round(value);
+  document.getElementById(id).innerText = parseFloat(value).toFixed(2);
 };
 
 // update delivery charge and total Tax
